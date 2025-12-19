@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SGPA & CGPA Calculator</title>
+<style>
+:root {
+    --background: #F9FAFB; /* Off-white */
+    --primary: #4A90E2; /* Blue main theme */
+    --text: #333333; /* Dark gray */
+    --input-border: #4A90E2;
+    --results-bg: #4A90E222; /* Transparent blue */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-top: 6px solid var(--primary);
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 15px;
+}
+
+select, input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #357ABD; /* Darker blue hover */
+}
+
+.results {
+    margin-top: 25px;
+    background-color: var(--results-bg);
+    padding: 20px;
+    border-radius: 8px;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.results hr {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px dashed var(--primary);
+}
+
+/* Tabs */
+.tab-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tab-buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+p.default-values {
+    background-color: var(--results-bg);
+    border-left: 5px solid var(--primary);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>SGPA & CGPA Calculator</h1>
+
+    <div class="tab-buttons">
+        <button onclick="showTab('gradeMode')">Grade & Incentive Mode</button>
+        <button onclick="showTab('creditMode')">Credits Mode</button>
+    </div>
+
+    <!-- Mode 1: Grade & Incentive -->
+    <div class="tab-content" id="gradeMode">
+        <p>Select your grade for each subject (Semester 3):</p>
+
+        <label>Discrete Mathematics (3 credits)</label>
+        <select id="DM">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Microcontrollers & Sensors (3 credits)</label>
+        <select id="MNS">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Database Management Systems (3 credits)</label>
+        <select id="DBMS">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Theory of Computation (3 credits)</label>
+        <select id="TOC">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>MDM (3 credits)</label>
+        <select id="MDM">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Open Elective (2 credits)</label>
+        <select id="OE">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Programming Lab (2 credits)</label>
+        <select id="PL">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>MNS Lab (1 credit)</label>
+        <select id="MNSLab">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>DBMS Lab (1 credit)</label>
+        <select id="DBMSLab">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Incentive Points (numeric)</label>
+        <input type="number" id="incentive" placeholder="Enter Incentive Points (optional)">
+
+        <button onclick="calculateGradeSGPA()">Calculate SGPA</button>
+        <div class="results" id="gradeResults"></div>
+    </div>
+
+    <!-- Mode 2: Credits Mode -->
+    <div class="tab-content" id="creditMode">
+        <p class="default-values">
+            Default Credits for AIML Dept:<br>
+            SEM 1: 20<br>
+            SEM 2: 22<br>
+            SEM 3: 21
+        </p>
+
+        <label for="credits1">Total Credits Earned in SEM 1:</label>
+        <input type="number" id="credits1" placeholder="Enter SEM 1 credits">
+
+        <label for="credits2">Total Credits Earned in SEM 2:</label>
+        <input type="number" id="credits2" placeholder="Enter SEM 2 credits">
+
+        <label for="credits3">Total Credits Earned in SEM 3:</label>
+        <input type="number" id="credits3" placeholder="Enter SEM 3 credits">
+
+        <button onclick="calculateSGPACGPA()">Calculate SGPA & CGPA</button>
+        <div class="results" id="creditResults"></div>
+    </div>
+</div>
+
+<script>
+function showTab(tabId){
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+}
+
+// Initially show Grade Mode
+showTab('gradeMode');
+
+function calculateGradeSGPA() {
+    const credits = { DM:3, MNS:3, DBMS:3, TOC:3, MDM:3, OE:2, PL:2, MNSLab:1, DBMSLab:1 };
+    const subjects = ["DM","MNS","DBMS","TOC","MDM","OE","PL","MNSLab","DBMSLab"];
+    let totalPoints = 0;
+    let totalCredits = 0;
+
+    for(let sub of subjects){
+        const gp = parseFloat(document.getElementById(sub).value);
+        if(isNaN(gp)){
+            document.getElementById('gradeResults').innerHTML = "⚠️ Please select grade for all subjects.";
+            return;
+        }
+        totalPoints += gp * credits[sub];
+        totalCredits += credits[sub];
+    }
+
+    const incentive = parseFloat(document.getElementById('incentive').value || 0);
+    totalPoints += incentive;
+
+    const SGPA = Math.min(totalPoints/totalCredits, 10).toFixed(2);
+
+    document.getElementById('gradeResults').innerHTML = `
+        <strong>Total Credits:</strong> ${totalCredits} <br>
+        <strong>Total Grade Points:</strong> ${totalPoints} <br>
+        <strong>Semester 3 SGPA:</strong> ${SGPA}
+    `;
+}
+
+function calculateSGPACGPA(){
+    const sem1 = parseFloat(document.getElementById('credits1').value);
+    const sem2 = parseFloat(document.getElementById('credits2').value);
+    const sem3 = parseFloat(document.getElementById('credits3').value);
+
+    const total1 = 20, total2 = 22, total3 = 21;
+
+    if(isNaN(sem1) || isNaN(sem2) || isNaN(sem3)){
+        document.getElementById('creditResults').innerHTML = "⚠️ Please enter valid credits for all semesters.";
+        return;
+    }
+
+    const SGPA1 = Math.min((sem1/total1)*10, 10).toFixed(2);
+    const SGPA2 = Math.min((sem2/total2)*10, 10).toFixed(2);
+    const SGPA3 = Math.min((sem3/total3)*10, 10).toFixed(2);
+    const CGPA = Math.min(((sem1+sem2+sem3)/(total1+total2+total3))*10, 10).toFixed(2);
+
+    const userCreditsSum = sem1 + sem2 + sem3;
+    const defaultCreditsSum = total1 + total2 + total3;
+
+    document.getElementById('creditResults').innerHTML = `
+        <strong>Total Credits Earned (User Input):</strong> ${userCreditsSum} <br>
+        <strong>Total Default Credits:</strong> ${defaultCreditsSum} <br>
+        SGPA SEM 1: ${SGPA1} <br>
+        SGPA SEM 2: ${SGPA2} <br>
+        SGPA SEM 3: ${SGPA3} <br>
+        <hr>
+        Overall CGPA: ${CGPA}
+    `;
+}
+</script>
+
+</body>
+</html>
