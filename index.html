@@ -321,10 +321,10 @@ function calculateSGPACGPA(){
         return;
     }
 
-    const SGPA1 = Math.min((sem1/total1)*10, 10).toFixed(2);
-    const SGPA2 = Math.min((sem2/total2)*10, 10).toFixed(2);
-    const SGPA3 = Math.min((sem3/total3)*10, 10).toFixed(2);
-    const CGPA = Math.min(((sem1+sem2+sem3)/(total1+total2+total3))*10, 10).toFixed(2);
+    const SGPA1 = Math.min((sem1/total1), 10).toFixed(2);
+    const SGPA2 = Math.min((sem2/total2), 10).toFixed(2);
+    const SGPA3 = Math.min((sem3/total3), 10).toFixed(2);
+    const CGPA = Math.min(((sem1+sem2+sem3)/(total1+total2+total3)), 10).toFixed(2);
 
     const userCreditsSum = sem1 + sem2 + sem3;
     const defaultCreditsSum = total1 + total2 + total3;
