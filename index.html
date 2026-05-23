@@ -92,13 +92,15 @@ button:hover {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .tab-buttons button {
     flex: 1;
-    margin: 0 5px;
+    margin: 5px 5px;
     padding: 10px;
-    font-size: 14px;
+    font-size: 13px;
+    min-width: 120px;
 }
 
 .tab-content {
@@ -118,24 +120,33 @@ p.default-values {
     color: var(--text);
     margin-bottom: 20px;
 }
+
+.sem-selector {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: var(--results-bg);
+    border-radius: 8px;
+}
+
+.sem-selector label {
+    margin: 0;
+}
 </style>
 </head>
 <body>
-
-  
-
 
 <div class="container">
     <h1>SGPA & CGPA Calculator</h1>
 
     <div class="tab-buttons">
-        <button onclick="showTab('gradeMode')">Grade & Incentive Mode</button>
+        <button onclick="showTab('gradeMode')">Grade Mode (S3)</button>
+        <button onclick="showTab('gradeModeSem4')">Grade Mode (S4)</button>
         <button onclick="showTab('creditMode')">Credits Mode</button>
     </div>
 
-    <!-- Mode 1: Grade & Incentive -->
+    <!-- Mode 1: Grade & Incentive (Semester 3) -->
     <div class="tab-content" id="gradeMode">
-        <p>Select your grade for each subject (Semester 3):</p>
+        <p><strong>Semester 3 - Select your grade for each subject:</strong></p>
 
         <label>Discrete Mathematics (3 credits)</label>
         <select id="DM">
@@ -248,17 +259,161 @@ p.default-values {
         <label>Incentive Points (numeric)</label>
         <input type="number" id="incentive" placeholder="Enter Incentive Points (optional)">
 
-        <button onclick="calculateGradeSGPA()">Calculate SGPA</button>
+        <button onclick="calculateGradeSGPA()">Calculate Semester 3 SGPA</button>
         <div class="results" id="gradeResults"></div>
     </div>
 
-    <!-- Mode 2: Credits Mode -->
+    <!-- Mode 2: Grade Mode (Semester 4) -->
+    <div class="tab-content" id="gradeModeSem4">
+        <p><strong>Semester 4 - Select your grade for each subject (Total Credits: 23):</strong></p>
+
+        <label>Internet of Things (IoT) (3 credits)</label>
+        <select id="S4_IoT">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Design and Analysis of Algorithms (3 credits)</label>
+        <select id="S4_DAA">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Design and Analysis of Algorithms Lab (1 credit)</label>
+        <select id="S4_DAALab">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Artificial Intelligence (3 credits)</label>
+        <select id="S4_AI">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Artificial Intelligence Lab (1 credit)</label>
+        <select id="S4_AILab">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Programming Laboratory - II (2 credits)</label>
+        <select id="S4_ProgLab">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Open Elective-II (2 credits)</label>
+        <select id="S4_OE">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Community Engagement Project (2 credits)</label>
+        <select id="S4_CEP">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Creativity, Innovation & Design Thinking (2 credits)</label>
+        <select id="S4_VEC">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Basic Competitive Coding (1 credit)</label>
+        <select id="S4_AEC">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>MDM-II (3 credits)</label>
+        <select id="S4_MDM">
+            <option value="">--Select Grade--</option>
+            <option value="10">AA</option>
+            <option value="9">AB</option>
+            <option value="8">BB</option>
+            <option value="7">BC</option>
+            <option value="6">CC</option>
+            <option value="5">CD</option>
+            <option value="0">FF</option>
+        </select>
+
+        <label>Incentive Points (numeric)</label>
+        <input type="number" id="S4_incentive" placeholder="Enter Incentive Points (optional)">
+
+        <button onclick="calculateGradeSGPASem4()">Calculate Semester 4 SGPA</button>
+        <div class="results" id="gradeResultsSem4"></div>
+    </div>
+
+    <!-- Mode 3: Credits Mode -->
     <div class="tab-content" id="creditMode">
         <p class="default-values">
-            Default Credits for AIML Dept:<br>
+            <strong>Default Credits for AIML Department:</strong><br>
             SEM 1: 20<br>
             SEM 2: 22<br>
-            SEM 3: 21
+            SEM 3: 21<br>
+            SEM 4: 23
         </p>
 
         <label for="credits1">Total Credits Earned in SEM 1:</label>
@@ -269,6 +424,9 @@ p.default-values {
 
         <label for="credits3">Total Credits Earned in SEM 3:</label>
         <input type="number" id="credits3" placeholder="Enter SEM 3 credits">
+
+        <label for="credits4">Total Credits Earned in SEM 4:</label>
+        <input type="number" id="credits4" placeholder="Enter SEM 4 credits">
 
         <button onclick="calculateSGPACGPA()">Calculate SGPA & CGPA</button>
         <div class="results" id="creditResults"></div>
@@ -281,7 +439,7 @@ function showTab(tabId){
     document.getElementById(tabId).classList.add('active');
 }
 
-// Initially show Grade Mode
+// Initially show Grade Mode (Semester 3)
 showTab('gradeMode');
 
 function calculateGradeSGPA() {
@@ -307,8 +465,48 @@ function calculateGradeSGPA() {
 
     document.getElementById('gradeResults').innerHTML = `
         <strong>Total Credits:</strong> ${totalCredits} <br>
-        <strong>Total Grade Points:</strong> ${totalPoints} <br>
-        <strong>Semester 3 SGPA:</strong> ${SGPA}
+        <strong>Total Grade Points:</strong> ${totalPoints.toFixed(2)} <br>
+        <strong>Semester 3 SGPA:</strong> <span style="color: var(--primary); font-size: 18px;"><strong>${SGPA}</strong></span>
+    `;
+}
+
+function calculateGradeSGPASem4() {
+    const credits = { 
+        S4_IoT: 3, 
+        S4_DAA: 3, 
+        S4_DAALab: 1, 
+        S4_AI: 3, 
+        S4_AILab: 1, 
+        S4_ProgLab: 2, 
+        S4_OE: 2, 
+        S4_CEP: 2, 
+        S4_VEC: 2, 
+        S4_AEC: 1, 
+        S4_MDM: 3 
+    };
+    const subjects = ["S4_IoT", "S4_DAA", "S4_DAALab", "S4_AI", "S4_AILab", "S4_ProgLab", "S4_OE", "S4_CEP", "S4_VEC", "S4_AEC", "S4_MDM"];
+    let totalPoints = 0;
+    let totalCredits = 0;
+
+    for(let sub of subjects){
+        const gp = parseFloat(document.getElementById(sub).value);
+        if(isNaN(gp)){
+            document.getElementById('gradeResultsSem4').innerHTML = "⚠️ Please select grade for all subjects.";
+            return;
+        }
+        totalPoints += gp * credits[sub];
+        totalCredits += credits[sub];
+    }
+
+    const incentive = parseFloat(document.getElementById('S4_incentive').value || 0);
+    totalPoints += incentive;
+
+    const SGPA = Math.min(totalPoints/totalCredits, 10).toFixed(2);
+
+    document.getElementById('gradeResultsSem4').innerHTML = `
+        <strong>Total Credits:</strong> ${totalCredits} <br>
+        <strong>Total Grade Points:</strong> ${totalPoints.toFixed(2)} <br>
+        <strong>Semester 4 SGPA:</strong> <span style="color: var(--primary); font-size: 18px;"><strong>${SGPA}</strong></span>
     `;
 }
 
@@ -316,10 +514,11 @@ function calculateSGPACGPA(){
     const sem1 = parseFloat(document.getElementById('credits1').value);
     const sem2 = parseFloat(document.getElementById('credits2').value);
     const sem3 = parseFloat(document.getElementById('credits3').value);
+    const sem4 = parseFloat(document.getElementById('credits4').value);
 
-    const total1 = 20, total2 = 22, total3 = 21;
+    const total1 = 20, total2 = 22, total3 = 21, total4 = 23;
 
-    if(isNaN(sem1) || isNaN(sem2) || isNaN(sem3)){
+    if(isNaN(sem1) || isNaN(sem2) || isNaN(sem3) || isNaN(sem4)){
         document.getElementById('creditResults').innerHTML = "⚠️ Please enter valid credits for all semesters.";
         return;
     }
@@ -327,24 +526,25 @@ function calculateSGPACGPA(){
     const SGPA1 = Math.min((sem1/total1), 10).toFixed(2);
     const SGPA2 = Math.min((sem2/total2), 10).toFixed(2);
     const SGPA3 = Math.min((sem3/total3), 10).toFixed(2);
-    const CGPA = Math.min(((sem1+sem2+sem3)/(total1+total2+total3)), 10).toFixed(2);
+    const SGPA4 = Math.min((sem4/total4), 10).toFixed(2);
+    const CGPA = Math.min(((sem1+sem2+sem3+sem4)/(total1+total2+total3+total4)), 10).toFixed(2);
 
-    const userCreditsSum = sem1 + sem2 + sem3;
-    const defaultCreditsSum = total1 + total2 + total3;
+    const userCreditsSum = sem1 + sem2 + sem3 + sem4;
+    const defaultCreditsSum = total1 + total2 + total3 + total4;
 
     document.getElementById('creditResults').innerHTML = `
         <strong>Total Credits Earned (User Input):</strong> ${userCreditsSum} <br>
         <strong>Total Default Credits:</strong> ${defaultCreditsSum} <br>
+        <hr>
         SGPA SEM 1: ${SGPA1} <br>
         SGPA SEM 2: ${SGPA2} <br>
         SGPA SEM 3: ${SGPA3} <br>
+        SGPA SEM 4: ${SGPA4} <br>
         <hr>
-        Overall CGPA: ${CGPA}
+        Overall CGPA: <span style="color: var(--primary); font-size: 18px;"><strong>${CGPA}</strong></span>
     `;
 }
 </script>
-
-
 
 </body>
 </html>
